@@ -36,7 +36,14 @@ def parse(input_string):
     stack = ["$", "E"]
     i = 0
     while stack:
-        print("Stack: " + "".join(stack))
+        
+        print("Stack: [",end="")
+        for j, item in enumerate(stack):
+            if j != 0:
+                print(",", end="")
+            print("'",item,"'" ,end="",sep="")         
+        print("]")
+    
         if stack[-1] == input_string[i]:
             # Match
             stack.pop()
@@ -70,7 +77,16 @@ def parse(input_string):
 def main():
     """Main function"""
     print("Programming Assignment 2, Predictive Parsing")
-    print("This program will parse the input string and determine if it is valid or not.")
+    print("This program will parse the input string and determine if it is valid or not. Enter EXIT to stop.")
+    val = input('Enter the input string: ')
+    while val.upper()!="EXIT":
+        parse(val)
+        print("=========================================")
+        val = input('Enter an input string: ')
+
+    print("Program exited.")
+    
+    """
     test_case_1 = "(a+a)*a$"
     test_case_2 = "a*(a/a)$"
     test_case_3 = "a(a+a)$"
@@ -82,7 +98,7 @@ def main():
     print("=========================================")
     print("Test Case 3: " + test_case_3)
     parse(test_case_3)
-
+"""
 
 if __name__ == "__main__":
     main()
